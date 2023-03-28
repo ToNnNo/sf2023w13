@@ -1,0 +1,157 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} :: Présentation de Twig {% endblock %}
+
+{# block principale ? #}
+{% block body %}
+    <h2>{{ block('title', 'base.html.twig') }}</h2>
+
+    {# Commentaire twig #}
+
+    <div>
+        <h3>Afficher une valeur</h3>
+
+        <p>Pour afficher une valeur, on utilise {{ '{{ ... }}' }}</p>
+
+        <p>ex: name = {{ name }}</p>
+
+        <h3>Echappement HTML</h3>
+
+        <p>{{ html }}</p>
+        <p>{{ html | raw }}</p>
+
+        <p>Par défaut, l'affichage utilise le filtre "escape" (e)</p>
+    </div>
+    <div>
+        <h3>Les Urls</h3>
+
+        <p>relative => path('twig_index') : {{ path('twig_index') }}</p>
+        <p>absolue => url('twig_index') : {{ url('twig_index') }}</p>
+
+        <p>
+            Url avec paramètre d'url : path('request_hello_name', {'firstname': 'jane', 'lastname': 'doe'})<br/>
+            <a href="{{ path('request_hello_name', {'firstname': 'jane', 'lastname': 'doe'}) }}">
+                Param d'url => Jane Doe
+            </a>
+        </p>
+
+        <p>
+            Url avec paramètre de requête : path('request_index', {'name': 'stéphane'})<br/>
+            <a href="{{ path('request_index', {'name': 'stéphane'}) }}">
+                Query Param => Stéphane
+            </a>
+        </p>
+    </div>
+    <div>
+        <h3>Structure</h3>
+        <h4>If</h4>
+
+        {% if name == 'John Smith' %}
+            <p>Bonjour John Smith</p>
+        {% endif %}
+
+        {% set name = "coucou" %}
+
+        {% if name is same as('John Smith') %}
+            <p>Bonjour John Smith</p>
+        {% elseif name == "coucou" %}
+            <p>Bonjour Coucou</p>
+        {% else %}
+            <p>Bonjour Visiteur</p>
+        {% endif %}
+
+        <h4>For</h4>
+
+        <h5>Clé / valeur</h5>
+        {% for key, value in numbers %}
+            <span>key = {{ key }}; value = {{ value }}</span> <br />
+        {% endfor %}
+
+        <h5>for + filter</h5>
+        {# v => v % 2 == 0 = (params1, params2) => { return v % 2 == 0 } #}
+        {% for i in numbers|filter( (v, k) => v is even ) %}
+            <span>i = {{ i }}</span> <br />
+        {% endfor %}
+
+        <h5>for else</h5>
+        {% for value in [] %}
+            <span>{{ value }}</span>
+        {% else %}
+            <span class="text-danger">Le tableau est vide</span>
+        {% endfor %}
+
+        <h5>Loop</h5>
+        {% for value in 'a'..'k' %}
+            <span>
+                loop.index = {{ loop.index }} / {{ loop.length }};
+                value = {{ value }}
+            </span>
+            {% if not loop.last %}
+                <br />
+            {% endif %}
+        {% endfor %}
+
+    </div>
+    <div>
+        <h3>Exemple d'Aurélien</h3>
+        {% set even = false %}
+
+        <p>Before; even = {{ even ? "true" : "false" }}</p>
+        {% for v in numbers %}
+            {% if v == 9 %}
+                {% set even = true %}
+            {% endif %}
+        {% endfor %}
+
+        <p>After; even = {{ even ? "true" : "false" }}</p>
+
+        {% set exist = 0 in numbers %}
+        <p> exist = {{ exist ? "true" : "false" }} {{ exist }}</p>
+    </div>
+    <div>
+        <h3>Tableau & Objet</h3>
+
+        <h4>Address</h4>
+        <address>
+            DAWAN Lille<br />
+            {{ address.street }}<br />
+            {{ address.zip }} {{ address.city }}
+        </address>
+
+        <h4>Class Person</h4>
+        <p>Bonjour {{ person.firstname ~ ' ' ~ person.lastname }}</p>
+
+        <p>Bonjour {{ person.fullname }}</p>
+
+        {# {{ person.address }} #}
+    </div>
+
+    <div>
+        <h3>Filtres</h3>
+
+        <p>{{ name | upper }}</p>
+
+        <p>{{ name }}</p>
+
+        <p>Il y a {{ numbers | length }} élèments dans le tableau</p>
+
+        <p>{{ date | date('d/m/Y H:i:s') }}</p>
+
+        <p>{{ date | format_datetime('full', 'medium', locale='fr') }}</p>
+
+        <p>{{ date | format_datetime('full', 'medium') }}</p>
+    </div>
+
+    <div>
+        <h3>Include</h3>
+    </div>
+
+    <div>
+        <h3>Dump</h3>
+    </div>
+
+    <div>
+        <h3>Sous requête</h3>
+    </div>
+
+{% endblock body %}
