@@ -144,14 +144,32 @@
 
     <div>
         <h3>Include</h3>
+
+        {% include 'twig/include.html.twig' with { name: "Aurélien", address } only %}
     </div>
 
     <div>
         <h3>Dump</h3>
+
+        {{ dump("test avec {{  }}") }}
+
+        {% dump("test avec {%  %}") %}
     </div>
 
     <div>
         <h3>Sous requête</h3>
+
+        <h4>avec une route</h4>
+        {{ render(path('twig_sub_request', {'limit': 5})) }}
+
+        <h4>avec un controller</h4>
+        {# A favoriser #}
+        {{ render(controller('App\\Controller\\TwigController::subRequest', {'limit': 3})) }}
+
+        {#
+            plus performant :
+            https://symfony.com/doc/current/templates.html#how-to-embed-asynchronous-content-with-hinclude-js
+        #}
     </div>
 
 {% endblock body %}

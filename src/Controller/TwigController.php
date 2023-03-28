@@ -33,4 +33,23 @@ class TwigController extends AbstractController
             'date' => new \DateTime()
         ]);
     }
+
+    #[Route('/twig/sub-request/{limit}', name: 'twig_sub_request')]
+    public function subRequest(int $limit = 10): Response
+    {
+        $list = [
+            'Alexis', 'Aurélien', 'Benjamin', 'Christophe', 'David D',
+            'David T', 'Sylvain', 'Thierry', 'Vincent', 'Fred'
+        ];
+
+        if( $limit < count($list) ) {
+            $list = array_slice($list, 0, $limit);
+        }
+
+        // sleep(10);
+
+        return $this->render('twig/sub-request.html.twig', [
+            'list' => $list
+        ]);
+    }
 }

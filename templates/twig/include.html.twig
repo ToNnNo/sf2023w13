@@ -1,0 +1,17 @@
+{# Défini une valeur par défaut pour la variable name #}
+{% set name = name|default('Visiteur') %}
+
+<p class="lead">Je suis un fichier inclus dans la page</p>
+
+{# name est une variable de twig/index.html.twig #}
+<p>Bonjour {{ name }}</p>
+
+{# A l'aide du test defined, faire afficher la variable address si elle est transmise #}
+{# sinon rien #}
+
+{% if address is defined %}
+    <address>
+        {{ address.street }}<br />
+        {{ address.zip }} {{ address.city }}
+    </address>
+{% endif %}

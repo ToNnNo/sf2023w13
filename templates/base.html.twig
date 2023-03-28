@@ -30,6 +30,7 @@
         <a href="{{ path('twig_index') }}" class="nav-link">Twig</a>
     </nav>
     <main>
+        {% set file = "base.html.twig" %}
         {% block notification %}{% endblock %}
         {% block body %}{% endblock %}
     </main>
