@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RequestController!{% endblock %}
+
+{% block body %}
+    <h1>Route, Request & Session</h1>
+
+    <div>
+        <a href="/request/session?action=create">Sauvegarder mon nom</a> -
+        <a href="/request/session?action=clear">Supprimer mon nom</a>
+    </div>
+
+    <p>Hello {{ name }}</p>
+{% endblock %}

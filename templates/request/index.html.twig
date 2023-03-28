@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RequestController!{% endblock %}
+
+{% block body %}
+    <h1>Route, Request & Session</h1>
+
+    {% for message in app.flashes('success') %}
+        <span style="color: dodgerblue">{{ message }}</span>
+    {% endfor %}
+
+    <p>Bonjour {{ name }} {{ lastname }}</p>
+
+    <ul>
+        <li>
+            <a href="/request/john">Les paramètres d'url</a>
+        </li>
+        <li>
+            <a href="/request?name=stephane">Les paramètres de requête</a>
+        </li>
+        <li>
+            <a href="/request/session">Session</a>
+        </li>
+        <li>
+            <a href="/request/flashes">Message Flash</a>
+        </li>
+    </ul>
+{% endblock %}
