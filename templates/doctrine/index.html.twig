@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Doctrine :: Article{% endblock %}
+
+{% block body %}
+    <h2>Créer un Article</h2>
+
+    <dl>
+        <dt>Titre</dt>
+        <dd>{{ post.title }}</dd>
+        <dt>Détail</dt>
+        <dd>{{ post.body }}</dd>
+        <dt>Date de création</dt>
+        <dd>{{ post.createdAt | format_datetime }}</dd>
+    </dl>
+
+    <a href="{{ path('doctrine_index', {"save": 1}) }}" class="btn btn-sm btn-outline-primary">
+        Sauvegarder l'article
+    </a>
+
+{% endblock %}
