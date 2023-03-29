@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/serie', name: 'serie_', requirements: ['id' => '\d+'])]
 class SerieController extends AbstractController
 {
     /*private $serieRepository;
@@ -21,17 +22,18 @@ class SerieController extends AbstractController
 
     public function __construct(private SerieRepository $serieRepository) { }
 
-    #[Route('/serie', name: 'serie_index')]
+    #[Route('', name: 'index')]
     public function index(): Response
     {
-        $series = $this->serieRepository->findAll();
+        // $series = $this->serieRepository->findAll();
+        $series = $this->serieRepository->findAllWithNotes();
 
         return $this->render('serie/index.html.twig', [
             'series' => $series
         ]);
     }
 
-    #[Route('/serie/add', name: 'serie_add')]
+    #[Route('/add', name: 'add')]
     public function add(Request $request): Response
     {
         $serie = new Serie();
@@ -47,6 +49,17 @@ class SerieController extends AbstractController
 
         return $this->render('serie/edit.html.twig', [
             'formView' => $form
+        ]);
+    }
+
+    #[Route('/{id}/detail', name: 'detail')]
+    public function detail(Serie $serie): Response
+    {
+        // ParamConverter => transforme la clé transmis dans l'url en une instance
+        // de l'entité demandé
+
+        return $this->render('serie/detail.html.twig', [
+            'serie' => $serie
         ]);
     }
 }

@@ -39,6 +39,19 @@ class SerieRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Serie[] Returns an array of Serie objects
+     */
+    public function findAllWithNotes(): array
+    {
+        return $this->createQueryBuilder('s')
+            ->select(['s', 'n'])
+            ->leftJoin('s.notes', 'n')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Serie[] Returns an array of Serie objects
 //     */

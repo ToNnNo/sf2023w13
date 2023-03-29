@@ -16,6 +16,8 @@
             <th>Titre</th>
             <th>Nombre de saison</th>
             <th>Date de diffusion</th>
+            <th>Notes</th>
+            <th>Moyenne</th>
             <th></th>
         </tr>
         </thead>
@@ -27,12 +29,31 @@
                 <td>{{ serie.season }}</td>
                 <td>{{ serie.airingDate | format_date }}</td>
                 <td>
+                    <ul class="list-unstyled">
+                    {% for note in serie.notes %}
+                        <li>{{ note.value }} / 10</li>
+                    {% else %}
+                        <li> - </li>
+                    {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    {{ not serie.average ? "-" : serie.average | format_number ~ " / 10" }}
 
+                    {# {% if serie.average is not null %}
+                        {{ serie.average | format_number }} / 10
+                    {% else %}
+                        -
+                    {% endif %} #}
+                </td>
+                <td>
+                    <a href="{{ path('serie_detail', {'id': serie.id}) }}">Détail Série</a> -
+                    <a href="">Détail Série + Notes</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5" class="text-center text-black-50">Aucune série enregistré actuellement</td>
+                <td colspan="7" class="text-center text-black-50">Aucune série enregistré actuellement</td>
             </tr>
         {% endfor %}
         </tbody>

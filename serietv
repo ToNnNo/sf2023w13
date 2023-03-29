@@ -11,3 +11,10 @@ Affiche         (string)    => poster
 
 Créer l'entité + Controller (Serie)
 
+Note (table intermédiaire)
+
+Value   (int)
+User    (x)
+Série   (x)
+
+
