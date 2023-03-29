@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer une série{% endblock %}
+
+{% block body %}
+    <h2>Editer des séries</h2>
+
+    <div class="mb-3">
+        <a href="{{ path('serie_index') }}" class="btn btn-sm btn-outline-dark">Revenir à la liste</a>
+    </div>
+
+    {# {{ form(formView) }} #}
+
+    {{ form_start(formView) }}
+
+    {# {{ form_row(formView.title) }}
+
+    <div>
+        {{ form_label(formView.season) }}
+        {{ form_errors(formView.season) }}
+        <br />
+        {{ form_widget(formView.season) }}
+        {{ form_help(formView.season) }}
+    </div>  #}
+
+    {{ form_rest(formView) }}
+
+    <button class="btn btn-primary">Enregister la série</button>
+    {# <input type="submit" />
+
+    <button type="button">cancel</button>
+    <input type="button" /> #}
+
+    {{ form_end(formView) }}
+
+{% endblock %}

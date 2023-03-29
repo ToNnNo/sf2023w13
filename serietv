@@ -1,0 +1,13 @@
+Série
+
+Titre           (string)    => title
+Type            (x)         => type
+NbSaison        (int)       => season
+DateDiffusion   (date)      => airingDate
+Réalisateur     (x)
+Acteurs         (x)
+Note            (x)
+Affiche         (string)    => poster
+
+Créer l'entité + Controller (Serie)
+

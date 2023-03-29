@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des séries{% endblock %}
+
+{% block body %}
+    <h2>Liste des séries</h2>
+
+    <div class="mb-3">
+        <a href="{{ path('serie_add') }}" class="btn btn-sm btn-outline-primary">Ajouter une série</a>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Nombre de saison</th>
+            <th>Date de diffusion</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for serie in series %}
+            <tr>
+                <td>{{ serie.id }}</td>
+                <td>{{ serie.title }}</td>
+                <td>{{ serie.season }}</td>
+                <td>{{ serie.airingDate | format_date }}</td>
+                <td>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5" class="text-center text-black-50">Aucune série enregistré actuellement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
