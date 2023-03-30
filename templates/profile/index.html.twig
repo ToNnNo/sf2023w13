@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil utilisateur{% endblock %}
+
+{% block body %}
+
+    <h2>Hello {{ app.user.userIdentifier }}</h2>
+
+    <p>Roles : {{ app.user.roles | join(', ') }}</p>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <p>
+            <a href="{{ path('profile_admin') }}">Voir plus d'information</a>
+        </p>
+    {% endif %}
+
+    {% if is_granted('ROLE_USER') %}
+        <p>Visible par les Admin et les User</p>
+    {% endif %}
+
+{% endblock %}

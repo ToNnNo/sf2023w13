@@ -4,7 +4,17 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        users_in_memory:
+            memory:
+                users:
+                    # username: { password: ..., roles: [..., ...]}
+                    user: { password: "$2y$13$tCzUVQXyqo48KmyYr2nsTehpSCWvrmnaLWsSEm8EeqKZStIfPSSJW", roles: ['ROLE_USER'] }
+                    admin: { password: "$2y$13$o69URtfMNGWDUL9Wt5fRYuukQ38oB7/BcvJ3TvGpAzghwtmLRyx02", roles: ['ROLE_ADMIN'] }
+                    superadmin: { password: "$2y$13$o69URtfMNGWDUL9Wt5fRYuukQ38oB7/BcvJ3TvGpAzghwtmLRyx02", roles: ['ROLE_SUPER_ADMIN'] }
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ROLE_USER]
+        ROLE_ADMIN: [ROLE_USER]
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -12,6 +22,13 @@ security:
         main:
             lazy: true
             provider: users_in_memory
+
+            form_login:
+                login_path: authentication_login
+                check_path: authentication_login
+                enable_csrf: true
+            logout:
+                path: authentication_logout
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -23,7 +40,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/connexion$, roles: PUBLIC_ACCESS }
+        - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
