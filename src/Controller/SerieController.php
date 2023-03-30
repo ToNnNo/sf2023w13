@@ -62,4 +62,18 @@ class SerieController extends AbstractController
             'serie' => $serie
         ]);
     }
+
+    #[Route('/{id}/detail/note', name: 'detail_notes')]
+    public function detailNotes(int $id): Response
+    {
+        $serie = $this->serieRepository->findOneWithNotes($id);
+
+        if(!$serie) {
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render('serie/detail_notes.html.twig', [
+            'serie' => $serie
+        ]);
+    }
 }

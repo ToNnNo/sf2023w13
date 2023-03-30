@@ -52,6 +52,18 @@ class SerieRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findOneWithNotes(int $id): ?Serie
+    {
+        return $this->createQueryBuilder('s')
+            ->select(['s', 'n'])
+            ->leftJoin('s.notes', 'n')
+            ->where('s.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
 //    /**
 //     * @return Serie[] Returns an array of Serie objects
 //     */

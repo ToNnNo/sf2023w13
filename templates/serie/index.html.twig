@@ -47,8 +47,10 @@
                     {% endif %} #}
                 </td>
                 <td>
-                    <a href="{{ path('serie_detail', {'id': serie.id}) }}">Détail Série</a> -
-                    <a href="">Détail Série + Notes</a>
+                    <a href="{{ path('serie_detail', {'id': serie.id}) }}">
+                        Détail Série</a> -
+                    <a href="{{ path('serie_detail_notes', {'id': serie.id}) }}">
+                        Détail Série + Notes</a>
                 </td>
             </tr>
         {% else %}
