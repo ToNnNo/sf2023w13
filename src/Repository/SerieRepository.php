@@ -45,8 +45,9 @@ class SerieRepository extends ServiceEntityRepository
     public function findAllWithNotes(): array
     {
         return $this->createQueryBuilder('s')
-            ->select(['s', 'n'])
+            ->select(['s', 'n', 'd'])
             ->leftJoin('s.notes', 'n')
+            ->leftJoin('s.director', 'd')
             ->getQuery()
             ->getResult()
         ;

@@ -35,6 +35,9 @@ class Serie
     #[ORM\OneToMany(mappedBy: 'serie', targetEntity: Note::class, orphanRemoval: true)]
     private Collection $notes;
 
+    #[ORM\ManyToOne]
+    private ?Director $director = null;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();
@@ -139,6 +142,18 @@ class Serie
                 $note->setSerie(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDirector(): ?Director
+    {
+        return $this->director;
+    }
+
+    public function setDirector(?Director $director): self
+    {
+        $this->director = $director;
 
         return $this;
     }

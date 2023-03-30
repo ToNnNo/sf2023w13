@@ -17,4 +17,8 @@ Value   (int)
 User    (x)
 Série   (x)
 
+Director
+
+firstname   (string)
+lastname    (string)
 

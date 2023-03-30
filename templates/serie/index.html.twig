@@ -16,6 +16,7 @@
             <th>Titre</th>
             <th>Nombre de saison</th>
             <th>Date de diffusion</th>
+            <th>Réalisateur</th>
             <th>Notes</th>
             <th>Moyenne</th>
             <th></th>
@@ -28,6 +29,7 @@
                 <td>{{ serie.title }}</td>
                 <td>{{ serie.season }}</td>
                 <td>{{ serie.airingDate | format_date }}</td>
+                <td>{{ not serie.director ? '-' : serie.director.fullname | capitalize }}</td>
                 <td>
                     <ul class="list-unstyled">
                     {% for note in serie.notes %}

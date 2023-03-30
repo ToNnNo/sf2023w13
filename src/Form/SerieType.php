@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Director;
 use App\Entity\Serie;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -16,6 +19,18 @@ class SerieType extends AbstractType
     {
         $builder
             ->add('title', TextType::class)
+            ->add('director', EntityType::class, [
+                'class' => Director::class,
+                'choice_label' => function(Director $director) {
+                    return $director->getFullname();
+                },
+                'placeholder' => 'Choice a director',
+                'query_builder' => function(EntityRepository $repository) {
+                    return $repository->createQueryBuilder('d')
+                        ->where('d.active = :active')
+                        ->setParameter('active', true);
+                }
+            ])
             ->add('season', IntegerType::class, [
                 'help' => 'Indiquer le nombre de saison de votre série'
             ])
