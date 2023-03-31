@@ -12,13 +12,14 @@ security:
             memory:
                 users:
                     # username: { password: ..., roles: [..., ...]}
-                    user: { password: "$2y$13$tCzUVQXyqo48KmyYr2nsTehpSCWvrmnaLWsSEm8EeqKZStIfPSSJW", roles: ['ROLE_USER'] }
+                    user: { password: "$2y$13$tCzUVQXyqo48KmyYr2nsTehpSCWvrmnaLWsSEm8EeqKZStIfPSSJW", roles: ['ROLE_MEMORY_USER'] }
                     admin: { password: "$2y$13$o69URtfMNGWDUL9Wt5fRYuukQ38oB7/BcvJ3TvGpAzghwtmLRyx02", roles: ['ROLE_ADMIN'] }
                     superadmin: { password: "$2y$13$o69URtfMNGWDUL9Wt5fRYuukQ38oB7/BcvJ3TvGpAzghwtmLRyx02", roles: ['ROLE_SUPER_ADMIN'] }
         all_users:
             chain:
                 providers: [ 'app_user_provider', 'users_in_memory' ]
     role_hierarchy:
+        ROLE_MEMORY_USER: [ROLE_USER]
         ROLE_SUPER_ADMIN: [ROLE_USER]
         ROLE_ADMIN: [ROLE_USER]
 
