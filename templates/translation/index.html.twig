@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Traduction{% endblock %}
+
+{% block body %}
+
+    <h2>Translation</h2>
+
+    <div class="mb-3">
+        <a href="{{ path('translation_index', {'_locale': 'fr'}) }}">Français</a> -
+        <a href="{{ path('translation_index', {'_locale': 'en'}) }}">English</a>
+    </div>
+
+    <p>{{ app.request.attributes.get('_locale') }}</p>
+
+    <p>{{ message }}</p>
+
+    <p>{{ 'message.welcome' | trans }}</p>
+
+    <p>{{ 'message.dawan' | trans }}</p>
+
+    <h3>Variable</h3>
+
+    <p>{{ 'hello.name' | trans({'%name%': name}) }}</p>
+
+    <h3>Pluralisation</h3>
+
+    <p>{{ 'mailbox.message' | trans({ '%count%': 0 }) }}</p>
+    <p>{{ 'mailbox.message' | trans({ '%count%': 1 }) }}</p>
+    <p>{{ 'mailbox.message' | trans({ '%count%': 3 }) }}</p>
+
+{% endblock %}

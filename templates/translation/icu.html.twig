@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Traduction{% endblock %}
+
+{% block body %}
+    {% trans_default_domain 'dawan' %}
+
+    <h2>{{ 'title' | trans }} Intl+Icu</h2>
+
+    <div class="mb-3">
+        <a href="{{ path('translation_icu', {'_locale': 'fr'}) }}">Français</a> -
+        <a href="{{ path('translation_icu', {'_locale': 'en'}) }}">English</a>
+    </div>
+
+    <p>{{ 'hello.name' | trans({'name': "Eduard"}) }}</p>
+
+    <p>{% trans with {'name': "Stéphane"} %} hi.name
+        {% endtrans %}</p>
+
+    <h3>Pluralisation</h3>
+
+    <p>{{ 'mailbox.message' | trans({ 'nb': 0 }) }}</p>
+    <p>{{ 'mailbox.message' | trans({ 'nb': 1 }) }}</p>
+    <p>{{ 'mailbox.message' | trans({ 'nb': 10 }) }}</p>
+
+    <h3>Genre</h3>
+
+    <p>{{ 'gender.message' | trans({'civility': 'ms', 'name': 'Jeanne'}) }}</p>
+    <p>{{ 'gender.message' | trans({'civility': 'mr', 'name': 'Jean'}) }}</p>
+    <p>{{ 'gender.message' | trans({'civility': '', 'name': 'Samuel'}) }}</p>
+
+    <h3>Date</h3>
+
+    <p>{{ 'post.publish' | trans({'post_publish_date': date}) }}</p>
+
+    {{ date() | format_datetime }}
+
+{% endblock %}

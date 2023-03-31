@@ -1,0 +1,25 @@
+title: Translation
+
+hello:
+    name: Hello {name}
+
+hi.name: Hello {name}
+
+mailbox:
+    message: >-
+        {nb, plural,
+            =0 {No message}
+            =1 {One new message}
+            other {# new messages}
+        }
+
+gender:
+    message: >-
+        {civility, select,
+            ms {Hello Miss {name}}
+            mr {Hello Mister {name}}
+            other {Hello {name}}
+        }
+
+post:
+    publish: 'Publish at {post_publish_date, date, full}'

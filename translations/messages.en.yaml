@@ -1,0 +1,13 @@
+'Hello world': Hello World
+
+# message.welcome: Welcome
+
+message:
+    welcome: Welcome
+    dawan: Symfony Init + Appro
+
+hello:
+    name: "Hello %name%"
+
+mailbox:
+    message: "{0}No message|{1}One new message|]1,Inf[ %count% new messages"

@@ -21,7 +21,7 @@ class ServiceController extends AbstractController
     {
         $message = "Quand je retire mes lunettes je suis superman !";
 
-        dump($this->getParameter('message'));
+        // dump($this->getParameter('message'));
 
         $ciphertext = $this->crypto->encode($message);
 

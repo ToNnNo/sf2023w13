@@ -1,0 +1,25 @@
+title: Traduction
+
+hello:
+    name: Bonjour {name}
+
+hi.name: Salut {name}
+
+mailbox:
+    message: >-
+        {nb, plural,
+            =0 {Aucun message}
+            =1 {Un nouveau message}
+            other {# nouveaux messages}
+        }
+
+gender:
+    message: >-
+        {civility, select,
+            ms {Bonjour Mademoiselle {name}}
+            mr {Bonjour Monsieur {name}}
+            other {Bonjour {name}}
+        }
+
+post:
+    publish: 'Publié le {post_publish_date, date, short}'
